@@ -1,13 +1,65 @@
-strut Node* reverseList(struct Node *head)
-{
-    Node* cur = head;
-    Node* prev = NULL;
-    while(cur){
-        NOde*next= cur->next;
-        cur->next = prev;
-        prev = cur;
-        cur = next;
+#include<iostream>
+using namespace std;
+struct node {
+    int data;
+    struct node* next;
+    node(int data)
+    {
+        this->data = data;
+        next = NULL;
     }
-    head = prev;
-    return head;
+};
+
+ 
+struct LinkedList {
+    node* head;
+    LinkedList() { head = NULL; }
+
+void reverse()
+{
+node* current =head;
+node *prev=NULL,*next=NULL;
+while(current != NULL)
+{
+    next=current->next;
+    current->next=prev;
+    prev=current;
+    current=next;
+    
+}
+head = prev;
+}
+
+ /* Function to print linked list */
+    void print()
+    {
+        struct node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+    }
+ 
+    void push(int data)
+    {
+        node* temp = new node(data);
+        temp->next = head;
+        head = temp;
+    }
+};
+
+int main()
+{
+    LinkedList l1;
+    l1.push(20);
+    l1.push(4);
+    l1.push(15);
+    l1.push(85);
+    
+    cout<<"given linked list";
+    l1.print();
+    l1.reverse();
+    cout<<"\nReverse Linked List";
+    l1.print();
+    return 0;
 }
